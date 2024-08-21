@@ -1,0 +1,1193 @@
+Microsoft Windows [Version 10.0.18362.1316]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\rajesh>c:
+
+C:\Users\rajesh>cd ..
+
+C:\Users>cd..
+
+C:\>cd xampp/mysql
+
+C:\xampp\mysql>mysql -u root
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+ERROR 2002 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> \h
+
+General information about MariaDB can be found at
+http://mariadb.org
+
+List of all client commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to MariaDB server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to MariaDB server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+
+For server side help, type 'help contents'
+
+MariaDB [(none)]> \c
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.002 sec)
+
+MariaDB [(none)]> use test;
+Database changed
+MariaDB [test]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [test]> use mydb;
+Database changed
+MariaDB [mydb]> show tables
+    -> ;
++----------------+
+| Tables_in_mydb |
++----------------+
+| student        |
+| student1       |
++----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [mydb]> select * from studen1
+    -> ;
+ERROR 1146 (42S02): Table 'mydb.studen1' doesn't exist
+MariaDB [mydb]> select * from student1;
++---------------------+------+-------+-------+
+| edate               | roll | name  | marks |
++---------------------+------+-------+-------+
+| 2024-08-20 00:00:00 |    1 | Ben   |  78.9 |
+| 2024-08-20 05:45:22 |    2 | John  |  86.3 |
+| 2024-08-20 17:40:27 |    3 | Harry |  64.3 |
++---------------------+------+-------+-------+
+3 rows in set (0.015 sec)
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    1 | Agnelo  |   100 |
+|    2 | Ajay    |  78.9 |
+|    3 | Ben     |   100 |
+|    4 | Charles |    60 |
+|    6 | John    |    60 |
++------+---------+-------+
+5 rows in set (0.008 sec)
+
+MariaDB [mydb]> insert into student (7,'Charles', 80),(8,'Glenn', 69);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '7,'Charles', 80),(8,'Glenn', 69)' at line 1
+MariaDB [mydb]> insert into student values (7,'Charles', 80),(8,'Glenn', 69);
+Query OK, 2 rows affected (0.005 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    1 | Agnelo  |   100 |
+|    2 | Ajay    |  78.9 |
+|    3 | Ben     |   100 |
+|    4 | Charles |    60 |
+|    6 | John    |    60 |
+|    7 | Charles |    80 |
+|    8 | Glenn   |    69 |
++------+---------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [mydb]> insert into student values (9,'James', 89),(10,'Joshua', 76);
+Query OK, 2 rows affected (0.011 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    1 | Agnelo  |   100 |
+|    2 | Ajay    |  78.9 |
+|    3 | Ben     |   100 |
+|    4 | Charles |    60 |
+|    6 | John    |    60 |
+|    7 | Charles |    80 |
+|    8 | Glenn   |    69 |
+|    9 | James   |    89 |
+|   10 | Joshua  |    76 |
++------+---------+-------+
+9 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where marks > 70;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    1 | Agnelo  |   100 |
+|    2 | Ajay    |  78.9 |
+|    3 | Ben     |   100 |
+|    7 | Charles |    80 |
+|    9 | James   |    89 |
+|   10 | Joshua  |    76 |
++------+---------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [mydb]> history;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'history' at line 1
+MariaDB [mydb]> create table first_class select name,marks from student where marks > 70;
+Query OK, 6 rows affected (0.015 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select * from first_class;
++---------+-------+
+| name    | marks |
++---------+-------+
+| Agnelo  |   100 |
+| Ajay    |  78.9 |
+| Ben     |   100 |
+| Charles |    80 |
+| James   |    89 |
+| Joshua  |    76 |
++---------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where marks > 70 and  id<5;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+MariaDB [mydb]> select * from student where marks > 70 and  roll<5;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | Agnelo |   100 |
+|    2 | Ajay   |  78.9 |
+|    3 | Ben    |   100 |
++------+--------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where marks between 70 and 80;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    2 | Ajay    |  78.9 |
+|    7 | Charles |    80 |
+|   10 | Joshua  |    76 |
++------+---------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where id in (2,5,7);
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+MariaDB [mydb]> select * from student where roll in (2,5,7);
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    2 | Ajay    |  78.9 |
+|    7 | Charles |    80 |
++------+---------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where id not in (2,5,7);
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+MariaDB [mydb]> select * from student where roll not in (2,5,7);
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    1 | Agnelo  |   100 |
+|    3 | Ben     |   100 |
+|    4 | Charles |    60 |
+|    6 | John    |    60 |
+|    8 | Glenn   |    69 |
+|    9 | James   |    89 |
+|   10 | Joshua  |    76 |
++------+---------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [mydb]> truncate first_class;
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [mydb]> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| first_class    |
+| student        |
+| student1       |
++----------------+
+3 rows in set (0.001 sec)
+
+MariaDB [mydb]> update student set marks =60.45 where roll =1
+    -> ;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update student set marks = 70.45, name = 'Greg' where roll =1
+    -> ;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update student set marks = marks - 0.5;
+Query OK, 9 rows affected (0.008 sec)
+Rows matched: 9  Changed: 9  Warnings: 0
+
+MariaDB [mydb]> select * from students order by marks asc;
+ERROR 1146 (42S02): Table 'mydb.students' doesn't exist
+MariaDB [mydb]> select * from student order by marks asc;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    4 | Charles |  59.5 |
+|    6 | John    |  59.5 |
+|    8 | Glenn   |  68.5 |
+|    1 | Greg    | 69.95 |
+|   10 | Joshua  |  75.5 |
+|    2 | Ajay    |  78.4 |
+|    7 | Charles |  79.5 |
+|    9 | James   |  88.5 |
+|    3 | Ben     |  99.5 |
++------+---------+-------+
+9 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student order by marks desc;
++------+---------+-------+
+| roll | name    | marks |
++------+---------+-------+
+|    3 | Ben     |  99.5 |
+|    9 | James   |  88.5 |
+|    7 | Charles |  79.5 |
+|    2 | Ajay    |  78.4 |
+|   10 | Joshua  |  75.5 |
+|    1 | Greg    | 69.95 |
+|    8 | Glenn   |  68.5 |
+|    4 | Charles |  59.5 |
+|    6 | John    |  59.5 |
++------+---------+-------+
+9 rows in set (0.000 sec)
+
+MariaDB [mydb]> alter table student add column class char;
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> alter table student add column class char default A;
+ERROR 1060 (42S21): Duplicate column name 'class'
+MariaDB [mydb]> insert into student set class ='A';
+Query OK, 1 row affected, 2 warnings (0.008 sec)
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 |         |    60 | A     |
+|    1 | Greg    | 69.95 | NULL  |
+|    2 | Ajay    |  78.4 | NULL  |
+|    3 | Ben     |  99.5 | NULL  |
+|    4 | Charles |  59.5 | NULL  |
+|    6 | John    |  59.5 | NULL  |
+|    7 | Charles |  79.5 | NULL  |
+|    8 | Glenn   |  68.5 | NULL  |
+|    9 | James   |  88.5 | NULL  |
+|   10 | Joshua  |  75.5 | NULL  |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> insert into student set class ='A' where marks > 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where marks > 10' at line 1
+MariaDB [mydb]> update student set class ='A' where marks > 10;
+Query OK, 9 rows affected (0.008 sec)
+Rows matched: 10  Changed: 9  Warnings: 0
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 |         |    60 | A     |
+|    1 | Greg    | 69.95 | A     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | A     |
+|    6 | John    |  59.5 | A     |
+|    7 | Charles |  79.5 | A     |
+|    8 | Glenn   |  68.5 | A     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> delete * from student whare roll = 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* from student whare roll = 0' at line 1
+MariaDB [mydb]> delete * from student where roll = 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* from student where roll = 0' at line 1
+MariaDB [mydb]> update student set class ='B' where marks between 60 and 70 ;
+Query OK, 3 rows affected (0.010 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+MariaDB [mydb]> update student set class ='B' where marks < 60; ;
+Query OK, 2 rows affected (0.007 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+ERROR: No query specified
+
+MariaDB [mydb]> select distinct class from student;
++-------+
+| class |
++-------+
+| B     |
+| A     |
++-------+
+2 rows in set (0.000 sec)
+
+MariaDB [mydb]> select 56 / 66;
++---------+
+| 56 / 66 |
++---------+
+|  0.8485 |
++---------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select 56 div 66;
++-----------+
+| 56 div 66 |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select 12 div 5;
++----------+
+| 12 div 5 |
++----------+
+|        2 |
++----------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select 12 % 5;
++--------+
+| 12 % 5 |
++--------+
+|      2 |
++--------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select 12 % 5 as rem;
++------+
+| rem  |
++------+
+|    2 |
++------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select roll, name, marks/10 - 0.24 as grade from student;
++------+---------+-------------------+
+| roll | name    | grade             |
++------+---------+-------------------+
+|    0 |         |              5.76 |
+|    1 | Greg    | 6.754999694824218 |
+|    2 | Ajay    |  7.60000015258789 |
+|    3 | Ben     | 9.709999999999999 |
+|    4 | Charles |              5.71 |
+|    6 | John    |              5.71 |
+|    7 | Charles |              7.71 |
+|    8 | Glenn   | 6.609999999999999 |
+|    9 | James   |              8.61 |
+|   10 | Joshua  |              7.31 |
++------+---------+-------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [mydb]> select roll, name, format(marks/10 - 0.24,2) as grade from student;
++------+---------+-------+
+| roll | name    | grade |
++------+---------+-------+
+|    0 |         | 5.76  |
+|    1 | Greg    | 6.75  |
+|    2 | Ajay    | 7.60  |
+|    3 | Ben     | 9.71  |
+|    4 | Charles | 5.71  |
+|    6 | John    | 5.71  |
+|    7 | Charles | 7.71  |
+|    8 | Glenn   | 6.61  |
+|    9 | James   | 8.61  |
+|   10 | Joshua  | 7.31  |
++------+---------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> update student set name = 'James' where roll=0;
+Query OK, 1 row affected (0.011 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 | James   |    60 | B     |
+|    1 | Greg    | 69.95 | B     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | B     |
+|    6 | John    |  59.5 | B     |
+|    7 | Charles |  79.5 | A     |
+|    8 | Glenn   |  68.5 | B     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> create table temp select roll, name, format(marks/10.0.24, 2) as grade from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.24, 2) as grade from student' at line 1
+MariaDB [mydb]> create table temp select roll, name, format(marks/10-0.24, 2) as grade from student;
+Query OK, 10 rows affected (0.018 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select roll+10, name, format(marks / 10 - 0.59, 2) as grade from student where marks > 70;
++---------+---------+-------+
+| roll+10 | name    | grade |
++---------+---------+-------+
+|      12 | Ajay    | 7.25  |
+|      13 | Ben     | 9.36  |
+|      17 | Charles | 7.36  |
+|      19 | James   | 8.26  |
+|      20 | Joshua  | 6.96  |
++---------+---------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> insert into temp select roll+10, name, format(marks /10 - 0.59, 2) as grade where marks > 70;
+ERROR 1054 (42S22): Unknown column 'roll' in 'field list'
+MariaDB [mydb]> select * from temp;
++------+---------+-------+
+| roll | name    | grade |
++------+---------+-------+
+|    0 | James   | 5.76  |
+|    1 | Greg    | 6.75  |
+|    2 | Ajay    | 7.60  |
+|    3 | Ben     | 9.71  |
+|    4 | Charles | 5.71  |
+|    6 | John    | 5.71  |
+|    7 | Charles | 7.71  |
+|    8 | Glenn   | 6.61  |
+|    9 | James   | 8.61  |
+|   10 | Joshua  | 7.31  |
++------+---------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 | James   |    60 | B     |
+|    1 | Greg    | 69.95 | B     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | B     |
+|    6 | John    |  59.5 | B     |
+|    7 | Charles |  79.5 | A     |
+|    8 | Glenn   |  68.5 | B     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> insert into temp select roll+10, name, format(marks /10 - 0.59, 2) as grade where marks > 70;
+ERROR 1054 (42S22): Unknown column 'roll' in 'field list'
+MariaDB [mydb]> insert into temp select roll + 10, name, format(marks /10 - 0.59, 2) as grade where marks > 70;
+ERROR 1054 (42S22): Unknown column 'roll' in 'field list'
+MariaDB [mydb]> insert into temp select roll, name, format(marks /10 - 0.59, 2) as grade where marks > 70;
+ERROR 1054 (42S22): Unknown column 'roll' in 'field list'
+MariaDB [mydb]> select * from temp where name like 'A%';
++------+------+-------+
+| roll | name | grade |
++------+------+-------+
+|    2 | Ajay | 7.60  |
++------+------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [mydb]> select * from temp where name like 'J%';
++------+--------+-------+
+| roll | name   | grade |
++------+--------+-------+
+|    0 | James  | 5.76  |
+|    6 | John   | 5.71  |
+|    9 | James  | 8.61  |
+|   10 | Joshua | 7.31  |
++------+--------+-------+
+4 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from temp where name like 'J%s';
++------+-------+-------+
+| roll | name  | grade |
++------+-------+-------+
+|    0 | James | 5.76  |
+|    9 | James | 8.61  |
++------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from temp where marks like '7%';
+ERROR 1054 (42S22): Unknown column 'marks' in 'where clause'
+MariaDB [mydb]> select * from student where marks like '7%';
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    2 | Ajay    |  78.4 | A     |
+|    7 | Charles |  79.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 | James   |    60 | B     |
+|    1 | Greg    | 69.95 | B     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | B     |
+|    6 | John    |  59.5 | B     |
+|    7 | Charles |  79.5 | A     |
+|    8 | Glenn   |  68.5 | B     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where name like '_____';
++------+-------+-------+-------+
+| roll | name  | marks | class |
++------+-------+-------+-------+
+|    0 | James |    60 | B     |
+|    8 | Glenn |  68.5 | B     |
+|    9 | James |  88.5 | A     |
++------+-------+-------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> cls
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cls' at line 1
+MariaDB [mydb]> select * from student where name like '_m___';
+Empty set (0.000 sec)
+
+MariaDB [mydb]> select * from student where name like '_m%';
+Empty set (0.000 sec)
+
+MariaDB [mydb]> select * from student where name like '__m%';
++------+-------+-------+-------+
+| roll | name  | marks | class |
++------+-------+-------+-------+
+|    0 | James |    60 | B     |
+|    9 | James |  88.5 | A     |
++------+-------+-------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student where marks like '_5%';
++------+--------+-------+-------+
+| roll | name   | marks | class |
++------+--------+-------+-------+
+|   10 | Joshua |  75.5 | A     |
++------+--------+-------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [mydb]> select count(name) from student;
++-------------+
+| count(name) |
++-------------+
+|          10 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [mydb]> select sum(marks) addition from student;
++-------------------+
+| addition          |
++-------------------+
+| 738.8499984741211 |
++-------------------+
+1 row in set (0.001 sec)
+
+MariaDB [mydb]> select max(marks) as max_marks from student;
++-----------+
+| max_marks |
++-----------+
+|      99.5 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select min(marks) as min_marks from student;
++-----------+
+| min_marks |
++-----------+
+|      59.5 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select avg(marks) as average from student;
++------------------+
+| average          |
++------------------+
+| 73.8849998474121 |
++------------------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> select distinct class from student;
++-------+
+| class |
++-------+
+| B     |
+| A     |
++-------+
+2 rows in set (0.000 sec)
+
+MariaDB [mydb]> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| first_class    |
+| student        |
+| student1       |
+| temp           |
++----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [mydb]> rename temp to student2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'temp to student2' at line 1
+MariaDB [mydb]> rename table temp to student2;
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [mydb]> select * from student limit 5;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 | James   |    60 | B     |
+|    1 | Greg    | 69.95 | B     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | B     |
++------+---------+-------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student order by marks desc limit 5;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    3 | Ben     |  99.5 | A     |
+|    9 | James   |  88.5 | A     |
+|    7 | Charles |  79.5 | A     |
+|    2 | Ajay    |  78.4 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [mydb]> select * from students where marks > (select avg(marks from student);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from student)' at line 1
+MariaDB [mydb]> select * from students where marks > (select avg(marks) from student);
+ERROR 1146 (42S02): Table 'mydb.students' doesn't exist
+MariaDB [mydb]> select * from student where marks > (select avg(marks) from student);
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    7 | Charles |  79.5 | A     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [mydb]> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| first_class    |
+| student        |
+| student1       |
+| student2       |
++----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [mydb]> select * from student1;
++---------------------+------+-------+-------+
+| edate               | roll | name  | marks |
++---------------------+------+-------+-------+
+| 2024-08-20 00:00:00 |    1 | Ben   |  78.9 |
+| 2024-08-20 05:45:22 |    2 | John  |  86.3 |
+| 2024-08-20 17:40:27 |    3 | Harry |  64.3 |
++---------------------+------+-------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from student2;
++------+---------+-------+
+| roll | name    | grade |
++------+---------+-------+
+|    0 | James   | 5.76  |
+|    1 | Greg    | 6.75  |
+|    2 | Ajay    | 7.60  |
+|    3 | Ben     | 9.71  |
+|    4 | Charles | 5.71  |
+|    6 | John    | 5.71  |
+|    7 | Charles | 7.71  |
+|    8 | Glenn   | 6.61  |
+|    9 | James   | 8.61  |
+|   10 | Joshua  | 7.31  |
++------+---------+-------+
+10 rows in set (0.002 sec)
+
+MariaDB [mydb]> create table stud1
+    -> (roll tinyint, name varchar(10), marks float);
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [mydb]> create table stud2
+    -> (roll tinyint, class varchar(2), age tinyint);
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [mydb]> insert into stud1 values (1,'anil', 67.89), (2,'mahesh', 60.23), (3,'rima', 78.45), (4,'akshay', 65.23),(5,'aliya', 76.23);
+Query OK, 5 rows affected (0.008 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> insert into stud12 values (3,'SY', 19), (4,'SY', 18), (5,'TY', 20), (6,'TY', 20),(7,'TY', 17);
+ERROR 1146 (42S02): Table 'mydb.stud12' doesn't exist
+MariaDB [mydb]> insert into stud2 values (3,'SY', 19), (4,'SY', 18), (5,'TY', 20), (6,'TY', 20),(7,'TY', 17);
+Query OK, 5 rows affected (0.012 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select * from stud1;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | anil   | 67.89 |
+|    2 | mahesh | 60.23 |
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud2;
++------+-------+------+
+| roll | class | age  |
++------+-------+------+
+|    3 | SY    |   19 |
+|    4 | SY    |   18 |
+|    5 | TY    |   20 |
+|    6 | TY    |   20 |
+|    7 | TY    |   17 |
++------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud1 inner join stud 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '2' at line 1
+MariaDB [mydb]> select * from stud1 inner join stud2;
++------+--------+-------+------+-------+------+
+| roll | name   | marks | roll | class | age  |
++------+--------+-------+------+-------+------+
+|    1 | anil   | 67.89 |    3 | SY    |   19 |
+|    2 | mahesh | 60.23 |    3 | SY    |   19 |
+|    3 | rima   | 78.45 |    3 | SY    |   19 |
+|    4 | akshay | 65.23 |    3 | SY    |   19 |
+|    5 | aliya  | 76.23 |    3 | SY    |   19 |
+|    1 | anil   | 67.89 |    4 | SY    |   18 |
+|    2 | mahesh | 60.23 |    4 | SY    |   18 |
+|    3 | rima   | 78.45 |    4 | SY    |   18 |
+|    4 | akshay | 65.23 |    4 | SY    |   18 |
+|    5 | aliya  | 76.23 |    4 | SY    |   18 |
+|    1 | anil   | 67.89 |    5 | TY    |   20 |
+|    2 | mahesh | 60.23 |    5 | TY    |   20 |
+|    3 | rima   | 78.45 |    5 | TY    |   20 |
+|    4 | akshay | 65.23 |    5 | TY    |   20 |
+|    5 | aliya  | 76.23 |    5 | TY    |   20 |
+|    1 | anil   | 67.89 |    6 | TY    |   20 |
+|    2 | mahesh | 60.23 |    6 | TY    |   20 |
+|    3 | rima   | 78.45 |    6 | TY    |   20 |
+|    4 | akshay | 65.23 |    6 | TY    |   20 |
+|    5 | aliya  | 76.23 |    6 | TY    |   20 |
+|    1 | anil   | 67.89 |    7 | TY    |   17 |
+|    2 | mahesh | 60.23 |    7 | TY    |   17 |
+|    3 | rima   | 78.45 |    7 | TY    |   17 |
+|    4 | akshay | 65.23 |    7 | TY    |   17 |
+|    5 | aliya  | 76.23 |    7 | TY    |   17 |
++------+--------+-------+------+-------+------+
+25 rows in set (0.000 sec)
+
+MariaDB [mydb]> select stud1.roll, stud1.name, stud1.marks, stud2.class, stud.age from stud1 join stud2 where stud1.roll=stud2.roll;
+ERROR 1054 (42S22): Unknown column 'stud.age' in 'field list'
+MariaDB [mydb]> select stud1.roll, stud1.name, stud1.marks, stud2.class, stud2.age from stud1 join stud2 where stud1.roll=stud2.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
++------+--------+-------+-------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a join stud2 as b where stud1.roll=stud2.roll;
+ERROR 1054 (42S22): Unknown column 'stud1.roll' in 'where clause'
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a join stud2 as b where a.roll=b.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
++------+--------+-------+-------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a left outer join stud2 as b where a.roll=b.roll;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where a.roll=b.roll' at line 1
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a left outer join stud2 as b;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a left outer join stud2 as b on a.roll=b.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
+|    1 | anil   | 67.89 | NULL  | NULL |
+|    2 | mahesh | 60.23 | NULL  | NULL |
++------+--------+-------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a left join stud2 as b on a.roll=b.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
+|    1 | anil   | 67.89 | NULL  | NULL |
+|    2 | mahesh | 60.23 | NULL  | NULL |
++------+--------+-------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a right join stud2 as b on a.roll=b.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
+| NULL | NULL   |  NULL | TY    |   20 |
+| NULL | NULL   |  NULL | TY    |   17 |
++------+--------+-------+-------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a right join stud2 as b on b.roll=a.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
+| NULL | NULL   |  NULL | TY    |   20 |
+| NULL | NULL   |  NULL | TY    |   17 |
++------+--------+-------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select b.roll, a.name, a.marks, b.class, b.age from stud1 as a right join stud2 as b on b.roll=a.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
+|    6 | NULL   |  NULL | TY    |   20 |
+|    7 | NULL   |  NULL | TY    |   17 |
++------+--------+-------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> create table stud3
+    -> (roll tinyint, name varchar(10), marks float);
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [mydb]> insert into stud3 values (3,'rima', 78.45), (4,'akshay', 60.23), (5,'rima', 78.45), (6,'akshay', 65.23),(7,'aliya', 76.23);
+Query OK, 5 rows affected (0.007 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [mydb]> select * rom stud3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'rom stud3' at line 1
+MariaDB [mydb]> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    3 | rima   | 78.45 |
+|    4 | akshay | 60.23 |
+|    5 | rima   | 78.45 |
+|    6 | akshay | 65.23 |
+|    7 | aliya  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud2;
++------+-------+------+
+| roll | class | age  |
++------+-------+------+
+|    3 | SY    |   19 |
+|    4 | SY    |   18 |
+|    5 | TY    |   20 |
+|    6 | TY    |   20 |
+|    7 | TY    |   17 |
++------+-------+------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud1;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | anil   | 67.89 |
+|    2 | mahesh | 60.23 |
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    3 | rima   | 78.45 |
+|    4 | akshay | 60.23 |
+|    5 | rima   | 78.45 |
+|    6 | akshay | 65.23 |
+|    7 | aliya  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> update stud3 set name = 'aliya' where roll = 5;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update stud3 set name = 'amit' where roll = 6;
+Query OK, 1 row affected (0.010 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update stud3 set name = 'amita' where roll = 7;
+Query OK, 1 row affected (0.011 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update stud3 set marks = 65.23  where roll = 4;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> update stud3 set marks = 58.03  where roll = 5;
+Query OK, 1 row affected (0.010 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> select * from stud1;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | anil   | 67.89 |
+|    2 | mahesh | 60.23 |
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 58.03 |
+|    6 | amit   | 65.23 |
+|    7 | amita  | 76.23 |
++------+--------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud1
+    -> union
+    -> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | anil   | 67.89 |
+|    2 | mahesh | 60.23 |
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
+|    5 | aliya  | 58.03 |
+|    6 | amit   | 65.23 |
+|    7 | amita  | 76.23 |
++------+--------+-------+
+8 rows in set (0.001 sec)
+
+MariaDB [mydb]> update stud3 set marks = 76.23  where roll = 5;
+Query OK, 1 row affected (0.005 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mydb]> select * from stud1
+    -> union
+    -> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    1 | anil   | 67.89 |
+|    2 | mahesh | 60.23 |
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
+|    6 | amit   | 65.23 |
+|    7 | amita  | 76.23 |
++------+--------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [mydb]> select * from stud1
+    -> intersect
+    -> select * from stud3;
++------+--------+-------+
+| roll | name   | marks |
++------+--------+-------+
+|    3 | rima   | 78.45 |
+|    4 | akshay | 65.23 |
+|    5 | aliya  | 76.23 |
++------+--------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [mydb]> select * from students;
+ERROR 1146 (42S02): Table 'mydb.students' doesn't exist
+MariaDB [mydb]> select * from student;
++------+---------+-------+-------+
+| roll | name    | marks | class |
++------+---------+-------+-------+
+|    0 | James   |    60 | B     |
+|    1 | Greg    | 69.95 | B     |
+|    2 | Ajay    |  78.4 | A     |
+|    3 | Ben     |  99.5 | A     |
+|    4 | Charles |  59.5 | B     |
+|    6 | John    |  59.5 | B     |
+|    7 | Charles |  79.5 | A     |
+|    8 | Glenn   |  68.5 | B     |
+|    9 | James   |  88.5 | A     |
+|   10 | Joshua  |  75.5 | A     |
++------+---------+-------+-------+
+10 rows in set (0.000 sec)
+
+MariaDB [mydb]> select name, marks from student where marks>60 and class = 'A' ;
++---------+-------+
+| name    | marks |
++---------+-------+
+| Ajay    |  78.4 |
+| Ben     |  99.5 |
+| Charles |  79.5 |
+| James   |  88.5 |
+| Joshua  |  75.5 |
++---------+-------+
+5 rows in set (0.010 sec)
+
+MariaDB [mydb]> create view student_view as select name, marks from student where marks>60 and class = 'A' ;
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [mydb]> select * from sudent_view;
+ERROR 1146 (42S02): Table 'mydb.sudent_view' doesn't exist
+MariaDB [mydb]> select * from student_view;
++---------+-------+
+| name    | marks |
++---------+-------+
+| Ajay    |  78.4 |
+| Ben     |  99.5 |
+| Charles |  79.5 |
+| James   |  88.5 |
+| Joshua  |  75.5 |
++---------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [mydb]> update student set marks =90 where name = 'James';
+Query OK, 2 rows affected (0.006 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [mydb]> select * from student_view;
++---------+-------+
+| name    | marks |
++---------+-------+
+| Ajay    |  78.4 |
+| Ben     |  99.5 |
+| Charles |  79.5 |
+| James   |    90 |
+| Joshua  |  75.5 |
++---------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [mydb]> select a.roll, a.name, a.marks, b.class, b.age from stud1 as a join stud2 as b where a.roll = b.roll;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
++------+--------+-------+-------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [mydb]> create view join_view as select a.roll, a.name, a.marks, b.class, b.age from stud1 as a join stud2 as b where a.roll = b.roll;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [mydb]> select * from join_view;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    3 | rima   | 78.45 | SY    |   19 |
+|    4 | akshay | 65.23 | SY    |   18 |
+|    5 | aliya  | 76.23 | TY    |   20 |
++------+--------+-------+-------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [mydb]> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]> ceate user admin@localhost identified by 'admin123'
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ceate user admin@localhost identified by 'admin123'' at line 1
+MariaDB [mydb]> create user admin@localhost identified by 'admin123';
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [mydb]> show user();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'user()' at line 1
+MariaDB [mydb]> select users();
+ERROR 1305 (42000): FUNCTION mydb.users does not exist
+MariaDB [mydb]> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [mydb]>
